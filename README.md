@@ -42,6 +42,9 @@
      more than pretending you got it right first time.
 
      Milestone 3. -->
+     After testing different chunk sizes (200, 300, 400) I have decided that keeping each document as its own chunk
+    is the most effective. With all of the other chunk sizes, within the inspected chunks there would be some that didn't have enough
+    information to be answer any questions, nor were they complete thoughts. Additionally, each document within the campus_list corpora is relatively short with a highly specific subject matter and succinct information delivery. Thus, I decided to keep it the way it is and use the original chunker since that had the best performance from I could see for the campus_life corpora.
 
 ## Sample Chunks
 
