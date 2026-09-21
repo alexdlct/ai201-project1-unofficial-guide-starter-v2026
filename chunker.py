@@ -97,6 +97,11 @@ def split_documents(documents: list[Document]) -> list[Chunk]:
       - Would splitting on paragraph breaks keep more thoughts intact than
         splitting on a character count?
     """
+
+    """After testing different chunk sizes (200, 300, 400) I have decided that keeping each document as its own chunk
+    is the most effective. With all of the other chunk sizes, within the inspected chunks there would be some that didn't have enough
+    information to be answer any questions, nor were they complete thoughts. Thus, I decided to keep it the way it is and use the original
+    chunker since that had the best performance from I could see for the campus_life corpora."""
     return fallback_split(documents)
 
 
