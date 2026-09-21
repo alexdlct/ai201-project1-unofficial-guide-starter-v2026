@@ -23,8 +23,7 @@ For at least 4 of my 5 test questions, the retrieved chunks include one that
 contains the answer.
 
 **Why this target:**
-<!-- e.g. "One of my questions is about a topic only two documents mention, so
-     I expect that one to be hard." -->
+I want the retriever to find consistently find the correct information, while allowing for for one question that could be harder to match due to wording.
 
 ---
 
@@ -33,8 +32,7 @@ contains the answer.
 Every answer the system produces names at least one source document.
 
 **Why this target:**
-<!-- Why all five and not four? What about your setup makes that achievable —
-     or what would have to go wrong for it not to be? -->
+All five are needed because the purpose of a RAG system is to get already written information, not draw new insights. If an answer doesn't name a source, the user can't tell where the document came from and verify it.
 
 ---
 
@@ -50,47 +48,34 @@ in at least 4 of 5 tries.
      just keep five of them, or the "4 of 5" above has nothing to be 4 of. -->
 
 **Why this target:**
-<!-- What did your distances look like when you set the cutoff in Milestone 4?
-     Was there a clean gap, or did the two groups overlap? -->
+This is needed because the knowledge within the RAG pipeline is limited in nature to the contents of the documents. The non-100% guarantee is chosen because the relevance threshold may be hard to define between completely unrelated and partialy unrelated questions.
 
 ---
 
 ## 4. Something about your chunks
 
-<!-- YOU WRITE THIS ONE.
-
-     How would you know if your chunks were the right size? Name something
-     countable or observable.
-
-     Examples of the right shape — don't copy these, they should come from
-     what you actually saw in Milestone 3:
-       - "At least 4 of 5 sampled chunks read as a complete thought, with no
-          sentence cut in half at either end."
-       - "No chunk is shorter than 200 characters, since anything below that
-          in my corpus turned out to be a heading with no content under it." -->
-
+At least 4 of my 5 randomly sampled chunks contain a complete thought and enough surrounding context to understand the passage without the need for either the previous or next chuk.
 
 
 **Why this target:**
-
+Because the previous critera accepted the 4 out of 5 benchmark, and having this in place allows me to show that my
+     chunks are generally large enough to contain useful context without needing to pieced together across chunks. The non-100%
+     benchmark is because some context may naturally fall between chunk boundaries. 
 
 
 ---
 
 ## 5. Your choice
 
-<!-- YOU WRITE THIS ONE TOO.
-
-     Pick something you actually care about getting right. It could be about
-     speed, about refusals, about a particular kind of question your corpus
-     handles badly, about source attribution being correct rather than merely
-     present — anything, as long as it names a number or an observable
-     outcome. -->
+For at least 4 of my 5 test questions, every source document that is attributed in the final answer contains information
+     that supports the claim it is cited for.
 
 
 
 **Why this target:**
-
+ I chose this target because it is important for source attribution to be correct for decision/reasoning pathways to be       
+     properly recorded. If an unknown output is generated, it should not say that it comes from an internal source that does not
+     support that claim. 
 
 
 ---
