@@ -26,6 +26,7 @@
      this repo.
 
      Milestone 5. -->
+     This RAG pipeline is a system that allows us to quickly retrieve information to answer questions regarding different aspects of campus life in college, from course logistics, campus dining, and housing concerns. The corpus I picked for this RAG system was the campus_life corpora, which holds all the documents that the information is pulled from. It treats each document as its own chunk, due to the short and highly specific nature of each document, allowing for specific and relevant information to easily be retrieved when prompted.
 
 ## Chunking Strategy
 
@@ -158,8 +159,40 @@ Write down specifics before the meeting. 'It's not working' is hard to act on; '
      visible. Milestone 4. -->
 
 **Question:**
-
+How do dining dollars work?
 **Answer:**
+======================================================================
+The assembled prompt, exactly as sent
+======================================================================
+Documents:
+
+[from admin_dining_dollars.txt]
+On the dining dollars
+
+Declining balance — what everyone calls dining dollars — rolls over from the autumn semester to the spring, but not from spring to the following autumn. Whatever is left in May disappears.
+
+[from admin_meal_plan_changes.txt]
+On the meal plan changes
+
+You can change your meal plan tier once, in the first ten days of the semester. After that it's locked. Downgrading refunds the difference to your student account; upgrading bills you immediately.
+
+[from dining_north_kitchen.txt]
+North Kitchen
+
+Second-year here. Wait times: none, it seats 60 and is rarely more than half full. The thing worth going for is the rotating regional menu, which changes fortnightly and is ambitious. The thing to know is that closed all summer and during reading week.
+
+Hours are 11:00am to 7:00pm weekdays. Costs one meal swipe, or $13.00 cash.
+
+---
+
+Question: How do dining dollars work?
+
+Answer using only the documents above, and name the file you used.
+======================================================================
+
+Dining dollars function as a declining balance that rolls over from the autumn semester to the spring, but they do not roll over from the spring to the following autumn and any remaining balance disappears in May (admin_dining_dollars.txt).
+
+Sources retrieved: admin_dining_dollars.txt, admin_meal_plan_changes.txt, dining_north_kitchen.txt
 
 ```
 ```
@@ -174,10 +207,21 @@ Write down specifics before the meeting. 'It's not working' is hard to act on; '
      here — the table below wants all ten rows.
 
      Milestone 4. -->
+I set the relevance cutoff to 0.5, because when I looked at the chunks generated from my test questions, all the chunks that came up with a relevance cutoff greater than 0.5 rarely held any information that was useful to answering the actual question that they were supposed to help with. Doing this allowed for the the actual useful information to not be buried under useless information. Between the two groups, the unrelated questions all had a best distance above 0.8, while the highest best distance among the test questions was 0.44. The full description of the two groups is found in the table below.
 
 | Question | In corpus? | Best distance |
 |---|---|---|
-|  |  |  |
+| How much does it cost to do your laundry in Aldrige Hall? | Y | 0.3391 |
+| When is the deadline to drop a course? | Y | 0.2603 |
+| According to the documents, when can you change your meal plan? | Y | 0.2940 |
+| Which study rooms have good, usable whiteboards? | Y | 0.3871 |
+| How often does the campus shuttle come on weekdays? | Y | 0.4396 |
+| How do I write a for loop in Rust? | N | 0.8960 |
+| What is the capital of Mongolia? | N | 0.8246 |
+| How do I change the oil in a diesel engine | N | 0.9340 |
+| Who won the 1994 World Cup | N | 0.8859 |
+| What is the recommended dosage of ibuprofen for a headache? | N | 0.8442 |
+
 
 ## How I Used AI
 
@@ -189,6 +233,9 @@ Write down specifics before the meeting. 'It's not working' is hard to act on; '
      "I used AI to help me code" is not.
 
      Milestone 5. -->
+I asked ChatGPT to justify using a 4 out of 5 benchmark within the acceptance criteria, instead of a 100% correctness one. It mentioned some things I had overlooked like information potentially lying on chunk borders. Because of this, I changed my initial acceptance criteria so that they allowed for some edge cases to still pass, while still flagging incorrect behavior.
+
+I asked ChatGPT to pressure test whether my test questions were specific enough. It said that some of them were too general in that they didn't specify what residential halls laundry was initally related to. I added this specficity to allow for the test question to have a more deterministic output so that it served as a better test benchmark.
 
 **1.**
 
