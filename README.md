@@ -525,7 +525,9 @@ It didn't help improve the numerical scores because the original system already 
 
      Milestone 5. -->
 
-     
+     The criterion themselves are still functional, but the extraneous chunk retrieval problem is still present. To fix it, I need to change the top-k chunks instead of the relevance gate threshold to do so.
+
+     I also found that My original `expects`strings were too dependent on exact wording, which caused correct answers to be marked as failures. I corrected those strings so that they check for the important factual content instead of one exact sentence.
 
 ## What I'd Do Differently
 
@@ -533,3 +535,4 @@ It didn't help improve the numerical scores because the original system already 
      differently, and why?
 
      Milestone 5. -->
+     I guess the only thing I would do was slightly modify criterion 4 to also include that the chunks that are allowed, are strictly the helpful ones, and not just that at the least a subset of the chunks that are retrieved, have enough info and sufficient context to answer the question. I would also make Criterion 5 stricter. I originally required the cited source to support the answer for 4 of 5 questions, but a RAG system should not present a citation that fails to support its claim, so it should support the answer for all 5 questions.
