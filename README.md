@@ -477,14 +477,20 @@ The campus shuttle runs a loop every 20 minutes on weekdays (transit_shuttle.txt
 
      Since all 5 criteria passed on the first real evaluation, my original criteria were pretty conservative in what they were evaluating. If I was to tighten one of them, I would change Criterion 1 from requiring 4/5 questions to 5/5 questions, since the system retrieved an answer-containg chunk for all 5 questions in every run that was tracked in the results from run_eval.py
 
+     One thing I did notice, is that while the correct answers were pulled for the majority of the time, there were often times extraneous chunks whose content wasn't entirely relevant, and had still slipped past the relevance gate.
+
 ## The Improvement
 
 **What I changed:**
+
+I tightened the relevance cutoff from 0.5 to 0.43. This makes the system overall more selective about which retrieved chunks are considered relevant enough to pull an answer from.
 
 **Why I picked it:**
 
 <!-- Connect it to a specific diagnosis above in one sentence. If you can't,
      you picked a fix because it sounded impressive. -->
+
+While all 5 of my original criteria were met, there was one specific thing that I found that they lacked in that they only provided a check against the FLOOR of information that was being pulled, so they only ensured that of the chunks that were retrieved for each request, they had enough context and the correct information to correctly answer the question. However, they didn't check for if more chunks were pulled after this. My 5 in-scope questions had best distances >= 0,4395, while the out-of-scope questions had much further distances beginning at 0.8. Therefore, I chose 0.45 sa a stricter cutoff that still kept al five known answerable questions inside the gate.
 
 ### Run Log — After
 
@@ -507,6 +513,7 @@ The campus shuttle runs a loop every 20 minutes on weekdays (transit_shuttle.txt
      tell.
 
      Milestone 4. -->
+It didn't help improve the numerical scores because the original system already met all 5 criteria. And although it did make the relvance gate stricter, it caused the failure of the 5th question by not retrieving any chunks, and still left the extraneous chunks in the other questions. Thus, this was not the change that was needed for the extraneous chunk problem to be found.
 
 ## What's Still Broken
 
@@ -517,6 +524,8 @@ The campus shuttle runs a loop every 20 minutes on weekdays (transit_shuttle.txt
      not.
 
      Milestone 5. -->
+
+     
 
 ## What I'd Do Differently
 
