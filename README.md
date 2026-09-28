@@ -271,15 +271,169 @@ I asked ChatGPT to pressure test whether my test questions were specific enough.
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunk contains the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 2. Every answer names a source | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 4. Chunk has sufficient context| 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 5. Correct Source Citation Content| 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
 
 <!-- Underneath, paste the REAL output for each criterion from one of your
      runs — the actual text your system produced, not a description of it.
      Name the file and function that produced it. -->
+
+## Real output: Produced by run_eval.py and scorer.py
+
+This is what the system actually produced. Paste the relevant parts
+into your README underneath the table — the rubric asks for real
+output as text, not a description of it.
+
+### How much does it cost to do your laundry in Aldrige Hall? — run 1
+
+- Best distance: 0.3391 (passed the gate)
+- Sources retrieved: housing_aldridge_hall_laundry.txt, housing_calder_annexe.txt, housing_innisfree_hall_laundry.txt
+
+```
+In Aldridge Hall, it costs $1.75 to wash and $1.50 to dry (housing_aldridge_hall_laundry.txt).
+```
+
+### How much does it cost to do your laundry in Aldrige Hall? — run 2
+
+- Best distance: 0.3391 (passed the gate)
+- Sources retrieved: housing_aldridge_hall_laundry.txt, housing_calder_annexe.txt, housing_innisfree_hall_laundry.txt
+
+```
+In Aldridge Hall, it costs $1.75 to wash and $1.50 to dry. 
+
+Source: housing_aldridge_hall_laundry.txt
+```
+
+### How much does it cost to do your laundry in Aldrige Hall? — run 3
+
+- Best distance: 0.3391 (passed the gate)
+- Sources retrieved: housing_aldridge_hall_laundry.txt, housing_calder_annexe.txt, housing_innisfree_hall_laundry.txt
+
+```
+In Aldridge Hall, it costs $1.75 to wash and $1.50 to dry. 
+
+Source: housing_aldridge_hall_laundry.txt
+```
+
+### When is the deadline to drop a course? — run 1
+
+- Best distance: 0.2603 (passed the gate)
+- Sources retrieved: admin_add_drop_deadline.txt, admin_pass_fail_option.txt, admin_withdrawal_deadline.txt
+
+```
+The deadline to drop a course is through the end of week six (from `admin_add_drop_deadline.txt` and `admin_withdrawal_deadline.txt`).
+```
+
+### When is the deadline to drop a course? — run 2
+
+- Best distance: 0.2603 (passed the gate)
+- Sources retrieved: admin_add_drop_deadline.txt, admin_pass_fail_option.txt, admin_withdrawal_deadline.txt
+
+```
+The deadline to drop a course is through the end of week six (from `admin_add_drop_deadline.txt` and `admin_withdrawal_deadline.txt`).
+```
+
+### When is the deadline to drop a course? — run 3
+
+- Best distance: 0.2603 (passed the gate)
+- Sources retrieved: admin_add_drop_deadline.txt, admin_pass_fail_option.txt, admin_withdrawal_deadline.txt
+
+```
+The deadline to drop a course is through the end of week six (from `admin_add_drop_deadline.txt` and `admin_withdrawal_deadline.txt`).
+```
+
+### According to the documents, when can you change your meal plan? — run 1
+
+- Best distance: 0.2940 (passed the gate)
+- Sources retrieved: admin_meal_plan_changes.txt, dining_kestrel_commons_followup.txt, dining_north_kitchen_followup.txt
+
+```
+According to the documents, you can change your meal plan tier once during the first ten days of the semester. 
+
+Source: admin_meal_plan_changes.txt
+```
+
+### According to the documents, when can you change your meal plan? — run 2
+
+- Best distance: 0.2940 (passed the gate)
+- Sources retrieved: admin_meal_plan_changes.txt, dining_kestrel_commons_followup.txt, dining_north_kitchen_followup.txt
+
+```
+According to the documents, you can change your meal plan tier once during the first ten days of the semester. After that, it is locked. 
+
+Source: `admin_meal_plan_changes.txt`
+```
+
+### According to the documents, when can you change your meal plan? — run 3
+
+- Best distance: 0.2940 (passed the gate)
+- Sources retrieved: admin_meal_plan_changes.txt, dining_kestrel_commons_followup.txt, dining_north_kitchen_followup.txt
+
+```
+According to the documents, you can change your meal plan tier once in the first ten days of the semester. 
+
+Source: admin_meal_plan_changes.txt
+```
+
+### Which study rooms have good, usable whiteboards? — run 1
+
+- Best distance: 0.3871 (passed the gate)
+- Sources retrieved: course_cs_210.txt, housing_aldridge_hall.txt, study_group_rooms.txt
+
+```
+Rooms 210 and 211 have whiteboards that actually erase (study_group_rooms.txt).
+```
+
+### Which study rooms have good, usable whiteboards? — run 2
+
+- Best distance: 0.3871 (passed the gate)
+- Sources retrieved: course_cs_210.txt, housing_aldridge_hall.txt, study_group_rooms.txt
+
+```
+Rooms 210 and 211 have whiteboards that actually erase. 
+*(Source: study_group_rooms.txt)*
+```
+
+### Which study rooms have good, usable whiteboards? — run 3
+
+- Best distance: 0.3871 (passed the gate)
+- Sources retrieved: course_cs_210.txt, housing_aldridge_hall.txt, study_group_rooms.txt
+
+```
+Rooms 210 and 211 have whiteboards that actually erase. 
+
+Source: study_group_rooms.txt
+```
+
+### How often does the campus shuttle come on weekdays? — run 1
+
+- Best distance: 0.4396 (passed the gate)
+- Sources retrieved: dining_kestrel_commons.txt, dining_verrill_street_grill.txt, transit_shuttle.txt
+
+```
+The campus shuttle runs a loop every 20 minutes on weekdays (transit_shuttle.txt).
+```
+
+### How often does the campus shuttle come on weekdays? — run 2
+
+- Best distance: 0.4396 (passed the gate)
+- Sources retrieved: dining_kestrel_commons.txt, dining_verrill_street_grill.txt, transit_shuttle.txt
+
+```
+On weekdays, the campus shuttle runs a loop every 20 minutes from 7am to 11pm (transit_shuttle.txt).
+```
+
+### How often does the campus shuttle come on weekdays? — run 3
+
+- Best distance: 0.4396 (passed the gate)
+- Sources retrieved: dining_kestrel_commons.txt, dining_verrill_street_grill.txt, transit_shuttle.txt
+
+```
+On weekdays, the campus shuttle runs a loop every 20 minutes from 7am to 11pm (Source: transit_shuttle.txt).
+```
 
 ## Verdicts
 

@@ -52,7 +52,7 @@ This is needed because the knowledge within the RAG pipeline is limited in natur
 
 ---
 
-## 4. Something about your chunks
+## 4. Chunk has sufficient context
 
 At least 4 of my 5 randomly sampled chunks contain a complete thought and enough surrounding context to understand the passage without the need for either the previous or next chuk.
 
@@ -65,7 +65,7 @@ Because the previous critera accepted the 4 out of 5 benchmark, and having this 
 
 ---
 
-## 5. Your choice
+## 5. Correct Source Citation Content
 
 For at least 4 of my 5 test questions, every source document that is attributed in the final answer contains information
      that supports the claim it is cited for.
