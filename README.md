@@ -240,6 +240,7 @@ I asked ChatGPT to justify using a 4 out of 5 benchmark within the acceptance cr
 
 I asked ChatGPT to pressure test whether my test questions were specific enough. It said that some of them were too general in that they didn't specify what residential halls laundry was initally related to. I added this specficity to allow for the test question to have a more deterministic output so that it served as a better test benchmark.
 
+I used ChatGPT to check the real output of the run_eval.py file to check if the retrieved chunks across all runs changed/removed the extraneuously retrieved chunks from the corpora after changing the relvance threshold.
 **1.**
 
 **2.**
