@@ -281,7 +281,7 @@ I asked ChatGPT to pressure test whether my test questions were specific enough.
      runs — the actual text your system produced, not a description of it.
      Name the file and function that produced it. -->
 
-## Real output: Produced by run_eval.py and scorer.py
+## Real output: Produced by run_eval.py and evaled by scorer.py
 
 This is what the system actually produced. Paste the relevant parts
 into your README underneath the table — the rubric asks for real
@@ -293,7 +293,9 @@ output as text, not a description of it.
 - Sources retrieved: housing_aldridge_hall_laundry.txt, housing_calder_annexe.txt, housing_innisfree_hall_laundry.txt
 
 ```
-In Aldridge Hall, it costs $1.75 to wash and $1.50 to dry (housing_aldridge_hall_laundry.txt).
+In Aldridge Hall, it costs $1.75 to wash and $1.50 to dry. 
+
+Source: housing_aldridge_hall_laundry.txt
 ```
 
 ### How much does it cost to do your laundry in Aldrige Hall? — run 2
@@ -302,9 +304,7 @@ In Aldridge Hall, it costs $1.75 to wash and $1.50 to dry (housing_aldridge_hall
 - Sources retrieved: housing_aldridge_hall_laundry.txt, housing_calder_annexe.txt, housing_innisfree_hall_laundry.txt
 
 ```
-In Aldridge Hall, it costs $1.75 to wash and $1.50 to dry. 
-
-Source: housing_aldridge_hall_laundry.txt
+It costs $1.75 to wash and $1.50 to dry in Aldridge Hall (housing_aldridge_hall_laundry.txt).
 ```
 
 ### How much does it cost to do your laundry in Aldrige Hall? — run 3
@@ -351,7 +351,7 @@ The deadline to drop a course is through the end of week six (from `admin_add_dr
 - Sources retrieved: admin_meal_plan_changes.txt, dining_kestrel_commons_followup.txt, dining_north_kitchen_followup.txt
 
 ```
-According to the documents, you can change your meal plan tier once during the first ten days of the semester. 
+According to the documents, you can change your meal plan tier once during the first ten days of the semester. After that, it is locked. 
 
 Source: admin_meal_plan_changes.txt
 ```
@@ -362,9 +362,9 @@ Source: admin_meal_plan_changes.txt
 - Sources retrieved: admin_meal_plan_changes.txt, dining_kestrel_commons_followup.txt, dining_north_kitchen_followup.txt
 
 ```
-According to the documents, you can change your meal plan tier once during the first ten days of the semester. After that, it is locked. 
+According to the documents, you can change your meal plan tier once in the first ten days of the semester, after which it is locked. 
 
-Source: `admin_meal_plan_changes.txt`
+Source: admin_meal_plan_changes.txt
 ```
 
 ### According to the documents, when can you change your meal plan? — run 3
@@ -373,7 +373,7 @@ Source: `admin_meal_plan_changes.txt`
 - Sources retrieved: admin_meal_plan_changes.txt, dining_kestrel_commons_followup.txt, dining_north_kitchen_followup.txt
 
 ```
-According to the documents, you can change your meal plan tier once in the first ten days of the semester. 
+According to the documents, you can change your meal plan tier once during the first ten days of the semester. After that, it is locked. 
 
 Source: admin_meal_plan_changes.txt
 ```
@@ -393,8 +393,7 @@ Rooms 210 and 211 have whiteboards that actually erase (study_group_rooms.txt).
 - Sources retrieved: course_cs_210.txt, housing_aldridge_hall.txt, study_group_rooms.txt
 
 ```
-Rooms 210 and 211 have whiteboards that actually erase. 
-*(Source: study_group_rooms.txt)*
+Rooms 210 and 211 have whiteboards that actually erase (study_group_rooms.txt).
 ```
 
 ### Which study rooms have good, usable whiteboards? — run 3
@@ -403,9 +402,7 @@ Rooms 210 and 211 have whiteboards that actually erase.
 - Sources retrieved: course_cs_210.txt, housing_aldridge_hall.txt, study_group_rooms.txt
 
 ```
-Rooms 210 and 211 have whiteboards that actually erase. 
-
-Source: study_group_rooms.txt
+Rooms 210 and 211 have whiteboards that actually erase (study_group_rooms.txt).
 ```
 
 ### How often does the campus shuttle come on weekdays? — run 1
@@ -423,7 +420,7 @@ The campus shuttle runs a loop every 20 minutes on weekdays (transit_shuttle.txt
 - Sources retrieved: dining_kestrel_commons.txt, dining_verrill_street_grill.txt, transit_shuttle.txt
 
 ```
-On weekdays, the campus shuttle runs a loop every 20 minutes from 7am to 11pm (transit_shuttle.txt).
+The campus shuttle runs a loop every 20 minutes on weekdays (transit_shuttle.txt).
 ```
 
 ### How often does the campus shuttle come on weekdays? — run 3
@@ -432,7 +429,7 @@ On weekdays, the campus shuttle runs a loop every 20 minutes from 7am to 11pm (t
 - Sources retrieved: dining_kestrel_commons.txt, dining_verrill_street_grill.txt, transit_shuttle.txt
 
 ```
-On weekdays, the campus shuttle runs a loop every 20 minutes from 7am to 11pm (Source: transit_shuttle.txt).
+The campus shuttle runs a loop every 20 minutes on weekdays (transit_shuttle.txt).
 ```
 
 ## Verdicts
@@ -448,11 +445,11 @@ On weekdays, the campus shuttle runs a loop every 20 minutes from 7am to 11pm (S
 
 | # | Criterion | Verdict | How I decided |
 |---|---|---|---|
-| 1 |  |  |  |
-| 2 |  |  |  |
-| 3 |  |  |  |
-| 4 |  |  |  |
-| 5 |  |  |  |
+| 1 | Retrieved chunk contains the answer | MET | The target was 4 of 5, and for all five questions the retrieved results included a source containing the expected answer in every run. |
+| 2 | Every answer names a source | MET | The target was 5 of 5, and every generated answer named at least one source document in all three runs. |
+| 3 | Gate stops out-of-corpus questions | MET | The target was 4 of 5, and the relevance gate refused all 5 of 5 out-of-corpus questions at the 0.5 cutoff. |
+| 4 | Chunk has sufficient context | MET | The target was 4 of 5, and all five answer-containing chunks were understandable on their own without needing a neighboring chunk. |
+| 5 | Correct Source Citation Content | MET | The target was 4 of 5, and all five cited source documents directly supported the claims made in the generated answers. |
 
 ## Diagnoses
 
@@ -490,11 +487,11 @@ On weekdays, the campus shuttle runs a loop every 20 minutes from 7am to 11pm (S
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunk contains the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 2. Every answer names a source | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 4. Chunk has sufficient context| 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 5. Correct Source Citation Content| 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
 
 **Did it help?**
 
