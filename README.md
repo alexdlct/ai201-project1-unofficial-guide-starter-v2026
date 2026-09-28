@@ -471,6 +471,12 @@ The campus shuttle runs a loop every 20 minutes on weekdays (transit_shuttle.txt
 
      Milestone 3. -->
 
+     None of my 5 acceptance criteria were missed when I used them to judge the real ouput. However, my initial automated scorer reported that many of the individual questions failed to pass. After looking at the results, I noticed that they did have the correct content from their actual outputs, and instead found that the problem was from the expected answers in the questions.py file. Thus, this wasn't a problem with the chunking or the prompts themselves, but in the evaluation system that I had defined.
+
+     My original `expects` values were written too much like natural language answers, as I didn't fully understand that they would be used to parse the output for an exact string match, not have another LLM use those natural language answers and independently verify that the RAG output would contain the same content. For example, for the meal plan question, my expected answer was "during the first ten days", while most of the FAIL'ed answers included "in the first ten days" which carry identical meanings, but don't pass because the wording isn't an exact match to the expected phrase.
+
+     Since all 5 criteria passed on the first real evaluation, my original criteria were pretty conservative in what they were evaluating. If I was to tighten one of them, I would change Criterion 1 from requiring 4/5 questions to 5/5 questions, since the system retrieved an answer-containg chunk for all 5 questions in every run that was tracked in the results from run_eval.py
+
 ## The Improvement
 
 **What I changed:**
